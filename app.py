@@ -791,11 +791,6 @@ with tabs[1]:
         retrieval_failed = metadata.get("retrieval_failed", False)
         explainability_status = metadata.get("explainability_status")
 
-        if mode == "SAFE":
-            llm_used = False
-
-        if mode == "SAFE":
-            llm_fallback = True
 
         if not explainability_status:
             explainability_status = "UNAVAILABLE"
@@ -1194,7 +1189,7 @@ with tabs[3]:
                 "status_indicator"
             ]
 
-            st.dataframe(filtered_df[display_cols], use_container_width=True)
+            st.dataframe(filtered_df[display_cols], width="content")
 
             st.divider()
 

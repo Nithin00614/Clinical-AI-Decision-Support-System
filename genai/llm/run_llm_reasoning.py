@@ -30,12 +30,14 @@ def run_llm_stage(stage4):
 
     # 4) Call real LLM
     llm = GroqLLMClient()
+    if decision_mode!="SAFE":
+        llm_start = time.time()
+        explanation = llm.generate(system_prompt, user_prompt)
+        llm_latency_ms = (time.time() - llm_start) * 1000
+    else:
+        explanation = ""
+        llm_latency_ms = 0    
 
-    llm_start = time.time()
-
-    explanation = llm.generate(system_prompt, user_prompt)
-
-    llm_latency_ms = (time.time() - llm_start) * 1000
     if not explanation or not explanation.strip():
         explanation = "Model produced no explanation. SHAP evidence suggests: " + payload.get("clinical_shap_summary", "")
 
@@ -116,10 +118,10 @@ def run_llm_stage(stage4):
         explainability_status = "Unavailable"
 
 
-    if guard_blocked or explainability_status == "Unavailable":
+    if guard_blocked or explainability_status == "Unavailable" or decision_mode == "SAFE":
         reasoning_confidence = "LOW"
 
-    elif decision_mode == "SAFE" or explainability_status == "Degraded":
+    elif explainability_status == "Degraded":
         reasoning_confidence = "MEDIUM"
 
     else:
@@ -129,8 +131,8 @@ def run_llm_stage(stage4):
     retrieved_failed = payload.get("retrieval_failed", False)
 
     reasoning_metadata = {
-    "llm_used": True,
-    "llm_fallback": explanation.startswith("System reliability is limited"),
+    "llm_used": decision_mode != "SAFE",
+    "llm_fallback": decision_mode == "SAFE",
     "evidence_used": bool(retrieved),
     "shap_used": shap_present,
     "confidence_score": confidence,

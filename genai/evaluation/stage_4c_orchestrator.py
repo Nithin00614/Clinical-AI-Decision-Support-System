@@ -85,7 +85,7 @@ def run_stage_4c(input_data: dict, risk_score: float, shap_features: dict):
     # Evidence retrieval
     query = " ".join(drivers_list) 
     retrieval_latency_ms = 0.0
-    retrieved, retrieval_latency_ms = search(query, k=8)
+    retrieved, retrieval_latency_ms = search(query, k=4)
     retrieval_count = len(retrieved)
 
     raw_chunks = retrieved

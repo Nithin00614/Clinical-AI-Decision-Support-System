@@ -10,7 +10,7 @@
 
 An **Explainable AI Clinical Decision Support System** for Chronic Kidney Disease (CKD) that combines machine learning prediction, SHAP explainability, clinical evidence retrieval, and LLM-based reasoning to provide transparent and reliable clinical insights.
 
-The system integrates **ML predictions, explainability, retrieval-augmented reasoning, safety guardrails, and monitoring** to support clinicians with interpretable decision support.
+The system integrates **ML model predictions, explainability, retrieval-augmented reasoning, safety guardrails, and monitoring** to support clinicians with interpretable decision support.
 
 ## Project Status
 
