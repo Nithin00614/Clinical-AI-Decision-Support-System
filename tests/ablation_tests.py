@@ -24,4 +24,4 @@ def run_ablation(mode, risk_score, shap_features=None, retrieved_chunks=None):
             }
         }
 
-    raise ValueError("Unknown ablation mode")
+    raise ValueError("Unknown Ablation mode")
