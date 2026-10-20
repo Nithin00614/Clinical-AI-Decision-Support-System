@@ -2,7 +2,7 @@ from genai.evaluation.evaluate_faithfulness import evaluate_faithfulness
 from genai.evaluation.evaluate_grounding import evaluate_grounding
 
 shap_features = {
-    "sc": 0.42,
+    "sc": 0.40,
     "bp": 0.18
 }
 
