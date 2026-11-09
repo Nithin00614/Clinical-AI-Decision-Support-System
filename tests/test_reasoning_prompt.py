@@ -4,8 +4,8 @@ from genai.evaluation.reasoning_pipeline import build_reasoning_prompt
 risk_score = 0.82
 shap_dict = {
     "sc": 0.42,
-    "hemo": -0.31,
-    "bp": 0.18
+    "hemo": -0.21,
+    "bp": 0.28
 }
 
 # Mock retrieved chunks (from FAISS sanity test)
